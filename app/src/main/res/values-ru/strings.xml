@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MemesApp</string>
+    <string name="Login">Логин</string>
+    <string name="Password">Пароль</string>
+    <string name="log_in_button">Войти</string>
+    <string name="PasswordErrorMinCountSymb">Пароль должен содержать более 5 символов</string>
+    <string name="FieldCantBeEmpty">Поле не может быть пустым</string>
+    <string name="TryAgain">Попробуйте снова</string>
+    <string name="WrongValues">Вы ввели неверные данные</string>
+    <string name="image_content_description">Картинка</string>
+</resources>
