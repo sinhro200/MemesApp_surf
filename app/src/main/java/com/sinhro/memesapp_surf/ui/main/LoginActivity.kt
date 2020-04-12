@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import com.sinhro.memesapp_surf.R
+import com.sinhro.memesapp_surf.model.NetworkService
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText
 import studio.carbonylgroup.textfieldboxes.TextFieldBoxes
 import java.lang.Math.min
@@ -184,10 +185,13 @@ class LoginActivity : AppCompatActivity() {
         Log.i("Login",digitLogin)
         Log.i("Password",pass)
 
-        custom_button_log_in.setStateLoading()
+        val ns = NetworkService()
+        ns.login(digitLogin,pass)
+
+        /*custom_button_log_in.setStateLoading()
         Handler().postDelayed({
             custom_button_log_in.setStateError()
-        },3000)
+        },3000)*/
     }
 
 }
