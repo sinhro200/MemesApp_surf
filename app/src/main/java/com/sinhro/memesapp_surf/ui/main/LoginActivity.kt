@@ -1,17 +1,14 @@
 package com.sinhro.memesapp_surf.ui.main
 
 import android.os.Bundle
-import android.os.Debug
-import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import com.sinhro.memesapp_surf.R
-import com.sinhro.memesapp_surf.model.NetworkService
+import com.sinhro.memesapp_surf.model.Login.LoginService
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText
 import studio.carbonylgroup.textfieldboxes.TextFieldBoxes
 import java.lang.Math.min
@@ -22,6 +19,8 @@ class LoginActivity : AppCompatActivity() {
     lateinit var login_extended_edit_text: ExtendedEditText
     lateinit var password_extended_edit_text: ExtendedEditText
     lateinit var custom_button_log_in: CustomLoadingButton
+
+    val loginService = LoginService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -177,21 +176,26 @@ class LoginActivity : AppCompatActivity() {
             if (digitLogin.length == 11 &&
                 pass.length >= resources.getInteger(R.integer.minCountCharactersInPass)
             )
-                onLoginAndPassReady(digitLogin, pass)
+                loginAndPassReadyAction(digitLogin, pass)
         }
     }
 
-    private fun onLoginAndPassReady(digitLogin: String, pass: String) {
+    private fun loginAndPassReadyAction(digitLogin: String, pass: String) {
         Log.i("Login",digitLogin)
         Log.i("Password",pass)
 
-        val ns = NetworkService()
-        ns.login(digitLogin,pass)
+        custom_button_log_in.setStateLoading()
+        loginService.login(
+            digitLogin,pass,
+            {
+                Log.i("Access token",it)
+                custom_button_log_in.setStateDefault()
+            },
+            {
+                custom_button_log_in.setStateError()
+            }
+        )
 
-        /*custom_button_log_in.setStateLoading()
-        Handler().postDelayed({
-            custom_button_log_in.setStateError()
-        },3000)*/
     }
 
 }
