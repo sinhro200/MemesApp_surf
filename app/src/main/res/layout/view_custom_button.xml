@@ -6,17 +6,6 @@
         android:layout_gravity="center"
         android:gravity="center"
 >
-    <TextView
-            android:id="@+id/message_tv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorError"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:paddingStart="24dp"
-            android:enabled="false"
-            android:textColor="@color/editTextColor"
-    />
     <Button
             android:id="@+id/log_in_btn_custom_button_view"
             android:layout_width="match_parent"

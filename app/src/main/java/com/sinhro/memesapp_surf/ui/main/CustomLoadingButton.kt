@@ -2,6 +2,7 @@ package com.sinhro.memesapp_surf.ui.main
 
 import android.content.Context
 import android.content.res.TypedArray
+import android.support.design.widget.Snackbar
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -23,7 +24,6 @@ class CustomLoadingButton @JvmOverloads constructor(
     RelativeLayout(context, attributeSet,defStyle,defStyleRes) {
     lateinit var login_button: Button
     lateinit var loading_iv: ImageView
-    lateinit var message_tv: TextView
     lateinit var buttonText:String
     var loadingAnimation : Animation
 
@@ -49,12 +49,6 @@ class CustomLoadingButton @JvmOverloads constructor(
                 R.string.log_in_button
             )
         )
-        val message_err = resources.getText(
-            typedArray.getResourceId(
-                R.styleable.CustomLoadingButton_text_error_message,
-                R.string.WrongValues
-            )
-        )
         val img_src = resources.getDrawable(
             typedArray.getResourceId(
                 R.styleable.CustomLoadingButton_src_image_state_loading,
@@ -64,9 +58,6 @@ class CustomLoadingButton @JvmOverloads constructor(
         )
         buttonText = textBtn.toString()
         loading_iv.setImageDrawable(img_src)
-
-        val message = message_err.toString() + "\n" +  resources.getString(R.string.TryAgain)
-        message_tv.text = message
 
         typedArray.recycle()
     }
@@ -78,7 +69,6 @@ class CustomLoadingButton @JvmOverloads constructor(
     private fun findViews(){
         login_button = findViewById(R.id.log_in_btn_custom_button_view)
         loading_iv = findViewById(R.id.loader_iv_custom_button_view)
-        message_tv = findViewById(R.id.message_tv)
     }
 
 
@@ -86,18 +76,7 @@ class CustomLoadingButton @JvmOverloads constructor(
         login_button.setOnClickListener(onClickListener)
     }
 
-    fun setStateError(){
-        message_tv.visibility = View.VISIBLE
-
-        login_button.visibility = View.INVISIBLE
-
-        loading_iv.visibility = View.INVISIBLE
-        loading_iv.clearAnimation()
-    }
-
     fun setStateLoading() {
-        message_tv.visibility = View.INVISIBLE
-
         login_button.isActivated = false
         login_button.isEnabled = false
         login_button.visibility = View.VISIBLE
@@ -109,8 +88,6 @@ class CustomLoadingButton @JvmOverloads constructor(
     }
 
     fun setStateDefault() {
-        message_tv.visibility = View.INVISIBLE
-
         login_button.isEnabled = true
         login_button.isActivated = true
         login_button.visibility = View.VISIBLE

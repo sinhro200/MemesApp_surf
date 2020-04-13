@@ -9,4 +9,5 @@
     <string name="TryAgain">Попробуйте снова</string>
     <string name="WrongValues">Вы ввели неверные данные</string>
     <string name="image_content_description">Картинка</string>
+    <string name="ErrorDuringRequest">Во время запроса произошла ошибка, возможно вы неверно ввели логин/пароль</string>
 </resources>

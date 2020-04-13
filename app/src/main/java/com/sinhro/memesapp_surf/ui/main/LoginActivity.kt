@@ -1,7 +1,6 @@
 package com.sinhro.memesapp_surf.ui.main
 
 import android.os.Bundle
-import android.os.Debug
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
@@ -9,7 +8,6 @@ import android.text.InputType
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import com.sinhro.memesapp_surf.R
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText
 import studio.carbonylgroup.textfieldboxes.TextFieldBoxes
@@ -178,6 +176,7 @@ class LoginActivity : AppCompatActivity() {
             )
                 onLoginAndPassReady(digitLogin, pass)
         }
+
     }
 
     private fun onLoginAndPassReady(digitLogin: String, pass: String) {
@@ -186,7 +185,11 @@ class LoginActivity : AppCompatActivity() {
 
         custom_button_log_in.setStateLoading()
         Handler().postDelayed({
-            custom_button_log_in.setStateError()
+            SnackbarHelper.showErrorMessage(
+                custom_button_log_in,
+                getString(R.string.ErrorDuringRequest)
+                )
+            custom_button_log_in.setStateDefault()
         },3000)
     }
 
