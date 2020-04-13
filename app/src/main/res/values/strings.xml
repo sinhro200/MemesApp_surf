@@ -10,4 +10,6 @@
     <string name="TryAgain">Try again</string>
     <string name="image_content_description">Image</string>
     <string name="ErrorDuringRequest">An error occurred during the request, maybe you entered the username / password incorrectly </string>
+
+
 </resources>

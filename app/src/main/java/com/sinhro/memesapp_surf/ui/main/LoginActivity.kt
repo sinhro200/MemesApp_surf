@@ -1,17 +1,18 @@
 package com.sinhro.memesapp_surf.ui.main
 
+import android.content.Intent
 import android.os.Bundle
-import android.os.Debug
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
-import android.widget.Button
+import com.sinhro.memesapp_surf.CustomDebugger.CustomDebug
 import com.sinhro.memesapp_surf.R
+import com.sinhro.memesapp_surf.domain.User
 import com.sinhro.memesapp_surf.model.Login.LoginService
+import com.sinhro.memesapp_surf.model.Storage.*
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText
 import studio.carbonylgroup.textfieldboxes.TextFieldBoxes
 import java.lang.Math.min
@@ -24,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var custom_button_log_in: CustomLoadingButton
 
     val loginService = LoginService()
+    lateinit var storage: Storage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +46,7 @@ class LoginActivity : AppCompatActivity() {
             createOnButtonLogInClickListener()
         )
 
+        storage = Storage(applicationContext)
     }
 
     private fun findViews() {
@@ -63,7 +66,6 @@ class LoginActivity : AppCompatActivity() {
                 if (prevCS.toString() != it)
                     s?.replace(0, s.length, newString)
             }
-
         }
 
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -76,9 +78,10 @@ class LoginActivity : AppCompatActivity() {
                     newString = ""
                     return
                 }
-                val sb: StringBuilder = java.lang.StringBuilder()
+
                 val digitVal = it.toString().filter { it.isDigit() }
                 val len = digitVal.length
+                val sb: StringBuilder = java.lang.StringBuilder()
                 sb.append(digitVal.elementAt(0))
                 if (len > 1) {
                     sb.append(" (")
@@ -99,9 +102,7 @@ class LoginActivity : AppCompatActivity() {
                 }
                 newString = sb.toString()
             }
-
         }
-
     }
 
     private fun createOnEyeClickListener() = object : View.OnClickListener {
@@ -184,15 +185,18 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun onLoginAndPassReady(digitLogin: String, pass: String) {
-        Log.i("Login",digitLogin)
-        Log.i("Password",pass)
+        CustomDebug.logValue("Login", digitLogin)
+        CustomDebug.logValue("Pass", pass)
+        var succes = false
 
         custom_button_log_in.setStateLoading()
         loginService.login(
-            digitLogin,pass,
+            digitLogin, pass,
             {
-                Log.i("Access token",it)
+                saveUser(it)
                 custom_button_log_in.setStateDefault()
+                succes = true
+                onSuccessLoginAction()
             },
             {
                 SnackbarHelper.showErrorMessage(
@@ -201,6 +205,39 @@ class LoginActivity : AppCompatActivity() {
                 )
             }
         )
+
+        Handler().postDelayed({
+            if (!succes) {
+                loginService.cancel()
+                SnackbarHelper.showErrorMessage(
+                    custom_button_log_in,
+                    getString(R.string.ErrorDuringRequest)
+                )
+                custom_button_log_in.setStateDefault()
+            }
+        }, 10000)
+    }
+
+    private fun saveUser(user : User){
+        storage.save(PREF_NAME_TOKEN, user.token)
+        storage.save(PREF_NAME_ID, user.userInfo.id.toString())
+        storage.save(PREF_NAME_USERNAME, user.userInfo.username)
+        storage.save(PREF_NAME_FIRSTNAME, user.userInfo.firstName)
+        storage.save(PREF_NAME_LASTNAME, user.userInfo.lastName)
+        storage.save(PREF_NAME_USERDESCRIPTION, user.userInfo.userDescription)
+    }
+
+    private fun onSuccessLoginAction() {
+        val tok = storage.get(PREF_NAME_TOKEN)
+        val id = storage.get(PREF_NAME_ID)
+        val usrname = storage.get(PREF_NAME_USERNAME)
+        val fname = storage.get(PREF_NAME_FIRSTNAME)
+        val lname = storage.get(PREF_NAME_LASTNAME)
+        val usrdescr = storage.get(PREF_NAME_USERDESCRIPTION)
+        CustomDebug.log("{user info from shared prefs} : $tok $id $usrname $fname $lname $usrdescr ")
+
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 
 }
