@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import com.sinhro.memesapp_surf.R
+import com.sinhro.memesapp_surf.model.Login.LoginService
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText
 import studio.carbonylgroup.textfieldboxes.TextFieldBoxes
 import java.lang.Math.min
@@ -21,6 +22,8 @@ class LoginActivity : AppCompatActivity() {
     lateinit var login_extended_edit_text: ExtendedEditText
     lateinit var password_extended_edit_text: ExtendedEditText
     lateinit var custom_button_log_in: CustomLoadingButton
+
+    val loginService = LoginService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -185,9 +188,6 @@ class LoginActivity : AppCompatActivity() {
         Log.i("Password",pass)
 
         custom_button_log_in.setStateLoading()
-        Handler().postDelayed({
-            custom_button_log_in.setStateError()
-        },3000)
         loginService.login(
             digitLogin,pass,
             {
