@@ -11,4 +11,10 @@ interface LoginApi {
         @Query("login") login: String,
         @Query("password") password: String
     ): Call<LoginResponse>
+
+    @POST("/auth/login")
+    fun login_tst(
+        @Query("login") login: String,
+        @Query("password") password: String
+    ): Call<Any>
 }

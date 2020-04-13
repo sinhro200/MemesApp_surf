@@ -1,5 +1,6 @@
 package com.sinhro.memesapp_surf.model
 
+import com.sinhro.memesapp_surf.CustomDebugger.CustomDebug
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,6 +17,10 @@ class RetrofitCallback<T>(
 
     override fun onResponse(call: Call<T>, response: Response<T>) {
         val body = response.body()
+
+        CustomDebug.log(response.raw().toString())
+        CustomDebug.log(body.toString())
+        body.toString()
         if (response.isSuccessful && body != null){
             onSuccess(body)
         }else{
