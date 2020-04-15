@@ -14,8 +14,7 @@ class SnackbarHelper {
             view : View,
             text : String
         ){
-            val snackbar: Snackbar
-            snackbar = Snackbar.make(view, text, Snackbar.LENGTH_LONG)
+            val snackbar= Snackbar.make(view, text, Snackbar.LENGTH_LONG)
             val snackBarView = snackbar.view
             snackBarView.setBackgroundResource(R.drawable.snackbar_custom)
             snackbar.show()

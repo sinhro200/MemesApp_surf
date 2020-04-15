@@ -2,7 +2,7 @@ package com.sinhro.memesapp_surf.model.Storage
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.sinhro.memesapp_surf.CustomDebugger.CustomDebug
+import com.sinhro.memesapp_surf.customDebugger.CustomDebug
 
 class Storage(context : Context) {
 
@@ -13,20 +13,23 @@ class Storage(context : Context) {
     }
 
     fun save(name : String, value : String){
-        sharedPreferences.edit().putString(name,value).apply()
+        sharedPreferences.edit()
+            .putString(name,value)
+            .apply()
         CustomDebug.log("Shared prefs saved : [$name] = [$value]")
     }
 
-    fun get(name : String) : String{
-        return sharedPreferences.getString(name,"")
-    }
+    fun get(name : String) = sharedPreferences.getString(name,"")
 
 
-    fun saveIntByName(name : String , value : Int){
-        sharedPreferences.edit().putInt(name,value).apply()
+
+    fun saveInt(name : String, value : Int){
+        sharedPreferences.edit()
+            .putInt(name,value)
+            .apply()
         CustomDebug.log("Shared prefs saved : [$name] = [$value]")
     }
 
-    fun getIntByName(name : String) = sharedPreferences.getInt(name,0)
+    fun getInt(name : String) = sharedPreferences.getInt(name,0)
 
 }

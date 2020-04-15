@@ -1,6 +1,6 @@
 package com.sinhro.memesapp_surf.model
 
-import com.sinhro.memesapp_surf.CustomDebugger.CustomDebug
+import com.sinhro.memesapp_surf.customDebugger.CustomDebug
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

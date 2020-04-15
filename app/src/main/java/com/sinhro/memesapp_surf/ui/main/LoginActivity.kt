@@ -2,20 +2,26 @@ package com.sinhro.memesapp_surf.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.view.View
-import com.sinhro.memesapp_surf.CustomDebugger.CustomDebug
 import com.sinhro.memesapp_surf.R
+import com.sinhro.memesapp_surf.customDebugger.CustomDebug
 import com.sinhro.memesapp_surf.domain.User
-import com.sinhro.memesapp_surf.model.Login.LoginService
+import com.sinhro.memesapp_surf.domain.UserAuthInfo
 import com.sinhro.memesapp_surf.model.Storage.*
+import com.sinhro.memesapp_surf.model.login.LoginService
+import ru.tinkoff.decoro.MaskImpl
+import ru.tinkoff.decoro.slots.PredefinedSlots
+import ru.tinkoff.decoro.slots.Slot
+import ru.tinkoff.decoro.watchers.FormatWatcher
+import ru.tinkoff.decoro.watchers.MaskFormatWatcher
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText
 import studio.carbonylgroup.textfieldboxes.TextFieldBoxes
 import java.lang.Math.min
+
 
 class LoginActivity : AppCompatActivity() {
     lateinit var login_text_field_boxes: TextFieldBoxes
@@ -24,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var password_extended_edit_text: ExtendedEditText
     lateinit var custom_button_log_in: CustomLoadingButton
 
-    val loginService = LoginService()
+    private val loginService = LoginService()
     lateinit var storage: Storage
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,9 +39,7 @@ class LoginActivity : AppCompatActivity() {
 
         findViews()
 
-        login_extended_edit_text.addTextChangedListener(
-            createOnLoginTextChangedListener()
-        )
+        acceptWatcher(login_extended_edit_text)
         password_text_field_boxes.endIconImageButton.setOnClickListener(
             createOnEyeClickListener()
         )
@@ -57,6 +61,32 @@ class LoginActivity : AppCompatActivity() {
         custom_button_log_in = findViewById(R.id.custom_log_in_btn)
     }
 
+    private fun acceptWatcher(eet : ExtendedEditText){
+        val mask= MaskImpl.createTerminated(
+            arrayOf(
+                PredefinedSlots.digit(),
+            PredefinedSlots.hardcodedSlot(' ').withTags(Slot.TAG_DECORATION),
+            PredefinedSlots.hardcodedSlot('(').withTags(Slot.TAG_DECORATION),
+            PredefinedSlots.digit(),
+            PredefinedSlots.digit(),
+            PredefinedSlots.digit(),
+            PredefinedSlots.hardcodedSlot(')').withTags(Slot.TAG_DECORATION),
+            PredefinedSlots.hardcodedSlot(' ').withTags(Slot.TAG_DECORATION),
+            PredefinedSlots.digit(),
+            PredefinedSlots.digit(),
+            PredefinedSlots.digit(),
+            PredefinedSlots.hardcodedSlot(' ').withTags(Slot.TAG_DECORATION),
+            PredefinedSlots.digit(),
+            PredefinedSlots.digit(),
+            PredefinedSlots.hardcodedSlot(' ').withTags(Slot.TAG_DECORATION),
+            PredefinedSlots.digit(),
+            PredefinedSlots.digit()
+        )
+        )
+        mask.isForbidInputWhenFilled = true
+        val formatWatcher: FormatWatcher = MaskFormatWatcher(mask)
+        formatWatcher.installOn(eet)
+    }
     private fun createOnLoginTextChangedListener() = object : TextWatcher {
         private lateinit var prevCS: CharSequence
         private var newString: String? = null
@@ -78,6 +108,7 @@ class LoginActivity : AppCompatActivity() {
                     newString = ""
                     return
                 }
+                val selectionPosition = password_extended_edit_text.selectionEnd
 
                 val digitVal = it.toString().filter { it.isDigit() }
                 val len = digitVal.length
@@ -101,6 +132,7 @@ class LoginActivity : AppCompatActivity() {
                     sb.append(digitVal.subSequence(9, min(len, 11)))
                 }
                 newString = sb.toString()
+                password_extended_edit_text.setSelection(selectionPosition)
             }
         }
     }
@@ -135,30 +167,19 @@ class LoginActivity : AppCompatActivity() {
 
     private fun createOnPasswordTextChangedListener() = object : TextWatcher {
         override fun afterTextChanged(s: Editable?) {
-            custom_button_log_in.setStateDefault()
             s?.let {
-                shouldShowHelp(
+                showHelp(
                     s.length < resources.getInteger(R.integer.minCountCharactersInPass)
                 )
             }
         }
 
-        private fun shouldShowHelp(isShow: Boolean) {
+        private fun showHelp(isShow: Boolean) {
             if (isShow)
                 password_text_field_boxes.helperText =
                     getString(R.string.PasswordErrorMinCountSymb)
             else
                 password_text_field_boxes.helperText = ""
-        }
-
-        private fun shouldShowErr(isShow: Boolean) {
-            if (isShow)
-                password_text_field_boxes.setError(
-                    getString(R.string.PasswordErrorMinCountSymb),
-                    false
-                )
-            else
-                password_text_field_boxes.removeError()
         }
 
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -187,35 +208,23 @@ class LoginActivity : AppCompatActivity() {
     private fun onLoginAndPassReady(digitLogin: String, pass: String) {
         CustomDebug.logValue("Login", digitLogin)
         CustomDebug.logValue("Pass", pass)
-        var succes = false
 
         custom_button_log_in.setStateLoading()
         loginService.login(
-            digitLogin, pass,
+            UserAuthInfo(digitLogin,pass),
             {
                 saveUser(it)
                 custom_button_log_in.setStateDefault()
-                succes = true
                 onSuccessLoginAction()
             },
             {
+                custom_button_log_in.setStateDefault()
                 SnackbarHelper.showErrorMessage(
                     custom_button_log_in,
                     getString(R.string.ErrorDuringRequest)
                 )
             }
         )
-
-        Handler().postDelayed({
-            if (!succes) {
-                loginService.cancel()
-                SnackbarHelper.showErrorMessage(
-                    custom_button_log_in,
-                    getString(R.string.ErrorDuringRequest)
-                )
-                custom_button_log_in.setStateDefault()
-            }
-        }, 10000)
     }
 
     private fun saveUser(user : User){
@@ -228,14 +237,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun onSuccessLoginAction() {
-        val tok = storage.get(PREF_NAME_TOKEN)
-        val id = storage.get(PREF_NAME_ID)
-        val usrname = storage.get(PREF_NAME_USERNAME)
-        val fname = storage.get(PREF_NAME_FIRSTNAME)
-        val lname = storage.get(PREF_NAME_LASTNAME)
-        val usrdescr = storage.get(PREF_NAME_USERDESCRIPTION)
-        CustomDebug.log("{user info from shared prefs} : $tok $id $usrname $fname $lname $usrdescr ")
-
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }

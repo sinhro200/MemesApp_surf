@@ -8,13 +8,3 @@ const val PREF_NAME_USERNAME = "username"
 const val PREF_NAME_FIRSTNAME = "firstName"
 const val PREF_NAME_LASTNAME = "lastName"
 const val PREF_NAME_USERDESCRIPTION = "userDescription"
-
-/*
-enum class Pref(val value: String) {
-    Token(PrefName_Token),
-    Id(PrefName_Id),
-    Username(PrefName_Username),
-    Firstname(PrefName_FirstName),
-    LastName(PrefName_LastName),
-    UserDescription(PrefName_UserDescription)
-}*/

@@ -1,10 +1,8 @@
 package com.sinhro.memesapp_surf.ui.main
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
-import com.sinhro.memesapp_surf.CustomDebugger.CustomDebug
 import com.sinhro.memesapp_surf.R
 import com.sinhro.memesapp_surf.model.Storage.*
 
