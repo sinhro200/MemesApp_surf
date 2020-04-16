@@ -24,11 +24,11 @@ class MainActivity:AppCompatActivity(){
     private fun showUserFromSharedPrefs() {
         val tok = storage.get(PREF_NAME_TOKEN)
         val id = storage.get(PREF_NAME_ID)
-        val usrname = storage.get(PREF_NAME_USERNAME)
-        val fname = storage.get(PREF_NAME_FIRSTNAME)
-        val lname = storage.get(PREF_NAME_LASTNAME)
-        val usrdescr = storage.get(PREF_NAME_USERDESCRIPTION)
-        test_tv.text = "{user info from shared prefs} : \n $tok \n $id \n $usrname \n $fname \n $lname \n $usrdescr  "
+        val username = storage.get(PREF_NAME_USERNAME)
+        val filename = storage.get(PREF_NAME_FIRSTNAME)
+        val lastName = storage.get(PREF_NAME_LASTNAME)
+        val userDescription = storage.get(PREF_NAME_USERDESCRIPTION)
+        test_tv.text = "{user info from shared prefs} : \n $tok \n $id \n $username \n $filename \n $lastName \n $userDescription  "
     }
 
 }
