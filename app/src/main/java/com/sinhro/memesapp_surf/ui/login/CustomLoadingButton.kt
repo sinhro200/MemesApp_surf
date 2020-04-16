@@ -1,8 +1,7 @@
-package com.sinhro.memesapp_surf.ui.main
+package com.sinhro.memesapp_surf.ui.login
 
 import android.content.Context
 import android.content.res.TypedArray
-import android.support.design.widget.Snackbar
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import android.view.animation.LinearInterpolator
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.RelativeLayout
-import android.widget.TextView
 import com.sinhro.memesapp_surf.R
 
 class CustomLoadingButton @JvmOverloads constructor(

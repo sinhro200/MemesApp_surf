@@ -1,4 +1,4 @@
-package com.sinhro.memesapp_surf.ui.main
+package com.sinhro.memesapp_surf.ui
 
 import android.content.Context
 import android.support.design.widget.Snackbar

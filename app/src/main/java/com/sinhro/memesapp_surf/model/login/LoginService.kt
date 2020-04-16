@@ -1,26 +1,22 @@
 package com.sinhro.memesapp_surf.model.login
 
 import android.os.Handler
-import com.sinhro.memesapp_surf.customDebugger.CustomDebug
 import com.sinhro.memesapp_surf.domain.User
-import com.sinhro.memesapp_surf.domain.UserAuthInfo
 import com.sinhro.memesapp_surf.model.BASE_URL
 import com.sinhro.memesapp_surf.model.LOGIN_TIMEOUT_MILLIS
-import com.sinhro.memesapp_surf.model.Login.LoginApi
-import com.sinhro.memesapp_surf.model.RetrofitCallback
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeoutException
 
 class LoginService {
 
-    companion object{
+    companion object {
         fun getInstance(): Retrofit {
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -39,11 +35,11 @@ class LoginService {
     private val loginApi = retrofit.create(LoginApi::class.java)
 
     fun login(
-        userAuthInfo : UserAuthInfo,
-        onSuccess : (User) -> Unit,
-        onError :(Throwable) -> Unit
+        loginRequest: LoginRequest,
+        onSuccess: (User) -> Unit,
+        onError: (Throwable) -> Unit
     ) {
-        val observer = loginApi.login(userAuthInfo)
+        val observer = loginApi.login(loginRequest)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
@@ -54,12 +50,16 @@ class LoginService {
                     onError(it)
                 }
             )
+        applyTimeoutHandler(observer, onError)
+    }
 
-        Handler().postDelayed(
-            Runnable{
-                observer.dispose()
-                onError(TimeoutException())
-            },LOGIN_TIMEOUT_MILLIS
-        )
+    private fun applyTimeoutHandler(obs: Disposable, onError: (Throwable) -> Unit) {
+        Handler()
+            .postDelayed({
+                if (!obs.isDisposed) {
+                    obs.dispose()
+                    onError(TimeoutException())
+                }
+            }, LOGIN_TIMEOUT_MILLIS)
     }
 }

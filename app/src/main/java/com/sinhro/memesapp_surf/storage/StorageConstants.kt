@@ -1,4 +1,4 @@
-package com.sinhro.memesapp_surf.model.Storage
+package com.sinhro.memesapp_surf.storage
 
 const val APP_PREFERENCES_NAME = "memesApp_prefs"
 

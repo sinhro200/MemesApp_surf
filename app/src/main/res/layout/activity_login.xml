@@ -56,7 +56,7 @@
 
     </LinearLayout>
 
-    <com.sinhro.memesapp_surf.ui.main.CustomLoadingButton
+    <com.sinhro.memesapp_surf.ui.login.CustomLoadingButton
             android:id="@+id/custom_log_in_btn"
             android:layout_width="wrap_content"
             android:layout_height="80dp"
