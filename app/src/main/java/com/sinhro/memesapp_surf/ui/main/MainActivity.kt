@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
 import com.sinhro.memesapp_surf.R
-import com.sinhro.memesapp_surf.model.Storage.*
+import com.sinhro.memesapp_surf.storage.*
 
 class MainActivity:AppCompatActivity(){
     lateinit var storage: Storage

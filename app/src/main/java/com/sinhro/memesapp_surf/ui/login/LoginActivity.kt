@@ -1,4 +1,4 @@
-package com.sinhro.memesapp_surf.ui.main
+package com.sinhro.memesapp_surf.ui.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,17 +10,13 @@ import android.view.View
 import com.sinhro.memesapp_surf.R
 import com.sinhro.memesapp_surf.customDebugger.CustomDebug
 import com.sinhro.memesapp_surf.domain.User
-import com.sinhro.memesapp_surf.domain.UserAuthInfo
-import com.sinhro.memesapp_surf.model.Storage.*
+import com.sinhro.memesapp_surf.model.login.LoginRequest
 import com.sinhro.memesapp_surf.model.login.LoginService
-import ru.tinkoff.decoro.MaskImpl
-import ru.tinkoff.decoro.slots.PredefinedSlots
-import ru.tinkoff.decoro.slots.Slot
-import ru.tinkoff.decoro.watchers.FormatWatcher
-import ru.tinkoff.decoro.watchers.MaskFormatWatcher
+import com.sinhro.memesapp_surf.storage.*
+import com.sinhro.memesapp_surf.ui.main.MainActivity
+import com.sinhro.memesapp_surf.ui.SnackbarHelper
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText
 import studio.carbonylgroup.textfieldboxes.TextFieldBoxes
-import java.lang.Math.min
 
 
 class LoginActivity : AppCompatActivity() {
@@ -39,7 +35,10 @@ class LoginActivity : AppCompatActivity() {
 
         findViews()
 
-        acceptWatcher(login_extended_edit_text)
+        EditTextChangeHelper.applyOnLoginTextChanged(
+            login_extended_edit_text
+        )
+        //acceptWatcher(login_extended_edit_text)
         password_text_field_boxes.endIconImageButton.setOnClickListener(
             createOnEyeClickListener()
         )
@@ -59,82 +58,6 @@ class LoginActivity : AppCompatActivity() {
         login_extended_edit_text = findViewById(R.id.login_extended_edit_text)
         password_extended_edit_text = findViewById(R.id.password_extended_edit_text)
         custom_button_log_in = findViewById(R.id.custom_log_in_btn)
-    }
-
-    private fun acceptWatcher(eet : ExtendedEditText){
-        val mask= MaskImpl.createTerminated(
-            arrayOf(
-                PredefinedSlots.digit(),
-            PredefinedSlots.hardcodedSlot(' ').withTags(Slot.TAG_DECORATION),
-            PredefinedSlots.hardcodedSlot('(').withTags(Slot.TAG_DECORATION),
-            PredefinedSlots.digit(),
-            PredefinedSlots.digit(),
-            PredefinedSlots.digit(),
-            PredefinedSlots.hardcodedSlot(')').withTags(Slot.TAG_DECORATION),
-            PredefinedSlots.hardcodedSlot(' ').withTags(Slot.TAG_DECORATION),
-            PredefinedSlots.digit(),
-            PredefinedSlots.digit(),
-            PredefinedSlots.digit(),
-            PredefinedSlots.hardcodedSlot(' ').withTags(Slot.TAG_DECORATION),
-            PredefinedSlots.digit(),
-            PredefinedSlots.digit(),
-            PredefinedSlots.hardcodedSlot(' ').withTags(Slot.TAG_DECORATION),
-            PredefinedSlots.digit(),
-            PredefinedSlots.digit()
-        )
-        )
-        mask.isForbidInputWhenFilled = true
-        val formatWatcher: FormatWatcher = MaskFormatWatcher(mask)
-        formatWatcher.installOn(eet)
-    }
-    private fun createOnLoginTextChangedListener() = object : TextWatcher {
-        private lateinit var prevCS: CharSequence
-        private var newString: String? = null
-        override fun afterTextChanged(s: Editable?) {
-            custom_button_log_in.setStateDefault()
-            newString?.let {
-                if (prevCS.toString() != it)
-                    s?.replace(0, s.length, newString)
-            }
-        }
-
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            prevCS = s ?: ""
-        }
-
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            s?.let {
-                if (s.isBlank()) {
-                    newString = ""
-                    return
-                }
-                val selectionPosition = password_extended_edit_text.selectionEnd
-
-                val digitVal = it.toString().filter { it.isDigit() }
-                val len = digitVal.length
-                val sb: StringBuilder = java.lang.StringBuilder()
-                sb.append(digitVal.elementAt(0))
-                if (len > 1) {
-                    sb.append(" (")
-                    sb.append(digitVal.subSequence(1, min(len, 4)))
-                    sb.append(")")
-                }
-                if (len > 4) {
-                    sb.append(" ")
-                    sb.append(digitVal.subSequence(4, min(len, 7)))
-                }
-                if (len > 7) {
-                    sb.append(" ")
-                    sb.append(digitVal.subSequence(7, min(len, 9)))
-                }
-                if (len > 9) {
-                    sb.append(" ")
-                    sb.append(digitVal.subSequence(9, min(len, 11)))
-                }
-                newString = sb.toString()
-                password_extended_edit_text.setSelection(selectionPosition)
-            }
-        }
     }
 
     private fun createOnEyeClickListener() = object : View.OnClickListener {
@@ -188,21 +111,32 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun createOnButtonLogInClickListener() = object : View.OnClickListener {
-        override fun onClick(v: View?) {
-            val digitLogin = login_extended_edit_text.text.toString().filter { it.isDigit() }
-            val pass = password_extended_edit_text.text.toString()
+    private fun createOnButtonLogInClickListener() = View.OnClickListener {
+        val digitLogin =
+            login_extended_edit_text.text
+                .toString()
+                .filter {
+                    it.isDigit()
+                }
+        val pass =
+            password_extended_edit_text.text
+                .toString()
 
-            if (digitLogin.isBlank())
-                login_text_field_boxes.setError(getString(R.string.FieldCantBeEmpty), false)
-            if (pass.isBlank())
-                password_text_field_boxes.setError(getString(R.string.FieldCantBeEmpty), false)
-
-            if (digitLogin.length == 11 &&
-                pass.length >= resources.getInteger(R.integer.minCountCharactersInPass)
+        if (digitLogin.isBlank())
+            login_text_field_boxes.setError(
+                getString(R.string.FieldCantBeEmpty), false
             )
-                onLoginAndPassReady(digitLogin, pass)
-        }
+        if (pass.isBlank())
+            password_text_field_boxes.setError(
+                getString(R.string.FieldCantBeEmpty), false
+            )
+        if (digitLogin.length < resources.getInteger(R.integer.countCharactersInLogin))
+            login_text_field_boxes.setError(null,false)
+
+        if (digitLogin.length == resources.getInteger(R.integer.countCharactersInLogin) &&
+            pass.length >= resources.getInteger(R.integer.minCountCharactersInPass)
+        )
+            onLoginAndPassReady(digitLogin, pass)
     }
 
     private fun onLoginAndPassReady(digitLogin: String, pass: String) {
@@ -211,7 +145,7 @@ class LoginActivity : AppCompatActivity() {
 
         custom_button_log_in.setStateLoading()
         loginService.login(
-            UserAuthInfo(digitLogin,pass),
+            LoginRequest(digitLogin, pass),
             {
                 saveUser(it)
                 custom_button_log_in.setStateDefault()
@@ -227,7 +161,7 @@ class LoginActivity : AppCompatActivity() {
         )
     }
 
-    private fun saveUser(user : User){
+    private fun saveUser(user: User) {
         storage.save(PREF_NAME_TOKEN, user.token)
         storage.save(PREF_NAME_ID, user.userInfo.id.toString())
         storage.save(PREF_NAME_USERNAME, user.userInfo.username)

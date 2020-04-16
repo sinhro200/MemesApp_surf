@@ -1,8 +1,8 @@
-package com.sinhro.memesapp_surf.domain
+package com.sinhro.memesapp_surf.model.login
 
 import com.google.gson.annotations.SerializedName
 
-data class UserAuthInfo (
+data class LoginRequest (
     @SerializedName("login")
     var login : String,
     @SerializedName("password")

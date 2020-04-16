@@ -1,4 +1,4 @@
-package com.sinhro.memesapp_surf.model.Storage
+package com.sinhro.memesapp_surf.storage
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -6,11 +6,8 @@ import com.sinhro.memesapp_surf.customDebugger.CustomDebug
 
 class Storage(context : Context) {
 
-    var sharedPreferences: SharedPreferences
-
-    init {
-        sharedPreferences = context.getSharedPreferences(APP_PREFERENCES_NAME,Context.MODE_PRIVATE)
-    }
+    var sharedPreferences: SharedPreferences =
+        context.getSharedPreferences(APP_PREFERENCES_NAME,Context.MODE_PRIVATE)
 
     fun save(name : String, value : String){
         sharedPreferences.edit()
