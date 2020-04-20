@@ -7,65 +7,67 @@
         android:background="@color/colorPrimaryDark"
 >
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingTop="80dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="80dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
 
-    >
-        <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
-            android:id="@+id/login_text_field_boxes"
-            style="@style/TextFieldBoxesStyle"
-            app:labelText="@string/Login"
-            android:layout_marginBottom="16dp"
         >
-
-            <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-                android:id="@+id/login_extended_edit_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:textColor="@color/editTextColor"
-                android:inputType="phone"
-                app:prefix="@string/login_phone_prefix"
-                app:prefixTextColor="@color/editTextColor"
-
-            />
-
-        </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
-
-        <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
-                android:id="@+id/password_text_field_boxes"
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                android:id="@+id/login_text_field_boxes"
                 style="@style/TextFieldBoxesStyle"
-                app:labelText="@string/Password"
-                app:endIcon="@drawable/eye_closed"
+                android:background="@color/colorPrimary"
+                app:labelText="@string/Login"
+                android:layout_marginBottom="16dp"
+            >
 
-        >
-            <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-                    android:id="@+id/password_extended_edit_text"
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                    android:id="@+id/login_extended_edit_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/editTextColor"
                     android:singleLine="true"
-                    android:inputType="numberPassword"
-            />
-        </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+                    android:textColor="@color/editTextColor"
+                    android:inputType="phone"
+                    app:prefix="@string/login_phone_prefix"
+                    app:prefixTextColor="@color/editTextColor"
+                />
 
-    </LinearLayout>
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
-    <com.sinhro.memesapp_surf.ui.login.CustomLoadingButton
-            android:id="@+id/custom_log_in_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                    android:id="@+id/password_text_field_boxes"
+                    style="@style/TextFieldBoxesStyle"
+                    android:background="@color/colorPrimary"
+                    app:labelText="@string/Password"
+                    app:endIcon="@drawable/eye_closed"
 
-            app:text_button="@string/log_in_button"
-            app:src_image_state_loading="@drawable/loading"
-            />
+            >
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                        android:id="@+id/password_extended_edit_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/editTextColor"
+                        android:singleLine="true"
+                        android:inputType="numberPassword"
+                />
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+        </LinearLayout>
+
+        <com.sinhro.memesapp_surf.ui.login.CustomLoadingButton
+                android:id="@+id/custom_log_in_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+
+
+                app:text_button="@string/log_in_button"
+                app:src_image_state_loading="@drawable/loading"
+                />
 
 </RelativeLayout>

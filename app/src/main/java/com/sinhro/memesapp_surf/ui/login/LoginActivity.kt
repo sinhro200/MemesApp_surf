@@ -1,20 +1,24 @@
 package com.sinhro.memesapp_surf.ui.login
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import com.sinhro.memesapp_surf.R
 import com.sinhro.memesapp_surf.customDebugger.CustomDebug
 import com.sinhro.memesapp_surf.domain.User
 import com.sinhro.memesapp_surf.model.login.LoginRequest
 import com.sinhro.memesapp_surf.model.login.LoginService
 import com.sinhro.memesapp_surf.storage.*
-import com.sinhro.memesapp_surf.ui.main.MainActivity
 import com.sinhro.memesapp_surf.ui.SnackbarHelper
+import com.sinhro.memesapp_surf.ui.main.MainActivity
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText
 import studio.carbonylgroup.textfieldboxes.TextFieldBoxes
 
@@ -38,13 +42,15 @@ class LoginActivity : AppCompatActivity() {
         EditTextChangeHelper.applyOnLoginTextChanged(
             login_extended_edit_text
         )
-        //acceptWatcher(login_extended_edit_text)
+        login_extended_edit_text.setOnKeyListener(createOnLoginEditTextEnterKeyListener())
+
         password_text_field_boxes.endIconImageButton.setOnClickListener(
             createOnEyeClickListener()
         )
         password_extended_edit_text.addTextChangedListener(
             createOnPasswordTextChangedListener()
         )
+        password_extended_edit_text.setOnKeyListener(createOnPasswordEditTextEnterKeyListener())
         custom_button_log_in.setOnClickListener(
             createOnButtonLogInClickListener()
         )
@@ -59,6 +65,35 @@ class LoginActivity : AppCompatActivity() {
         password_extended_edit_text = findViewById(R.id.password_extended_edit_text)
         custom_button_log_in = findViewById(R.id.custom_log_in_btn)
     }
+
+    private fun createOnLoginEditTextEnterKeyListener() = object : View.OnKeyListener {
+        override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                password_extended_edit_text.requestFocus()
+                return true
+            }
+            return false
+        }
+    }
+
+    private fun createOnPasswordEditTextEnterKeyListener() = object : View.OnKeyListener{
+        override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
+                if (event?.action == KeyEvent.ACTION_DOWN
+                    && keyCode == KeyEvent.KEYCODE_ENTER) {
+                        v?.let { hideKeyboardFrom(applicationContext,v)  }
+                        custom_button_log_in.performClick()
+                        return true
+                }
+            return false
+        }
+    }
+
+    fun hideKeyboardFrom(context: Context, view: View) {
+        val imm: InputMethodManager =
+            context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
 
     private fun createOnEyeClickListener() = object : View.OnClickListener {
         private var canShowPass: Boolean =
@@ -81,7 +116,7 @@ class LoginActivity : AppCompatActivity() {
             password_extended_edit_text.inputType =
                 InputType.TYPE_CLASS_NUMBER or (
                         if (isVisible)
-                            InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                            InputType.TYPE_NUMBER_VARIATION_NORMAL
                         else
                             InputType.TYPE_NUMBER_VARIATION_PASSWORD
                         )

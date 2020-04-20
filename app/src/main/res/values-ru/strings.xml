@@ -10,4 +10,10 @@
     <string name="WrongValues">Вы ввели неверные данные</string>
     <string name="image_content_description">Картинка</string>
     <string name="ErrorDuringRequest">Во время запроса произошла ошибка, возможно вы неверно ввели логин/пароль</string>
+    <string name="menu_memes">Мемы</string>
+    <string name="menu_addMeme">Добавить мем</string>
+    <string name="menu_profile">Профиль</string>
+    <string name="share_meme">Поделиться</string>
+    <string name="like_meme">Нравится</string>
+    <string name="meme_cell_main_image">Картинка мема</string>
 </resources>

@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#23213F</color>
     <color name="colorAccent">#1EF0D7</color>
     <color name="colorError">#FF575D</color>
+    <color name="bottom_navView_backColor">#12102B</color>
+
 
     <color name="editTextColor">#FFFFFF</color>
 </resources>

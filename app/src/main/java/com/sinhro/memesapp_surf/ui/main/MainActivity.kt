@@ -1,34 +1,54 @@
 package com.sinhro.memesapp_surf.ui.main
 
 import android.os.Bundle
+import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.widget.TextView
+import android.support.v7.widget.Toolbar
+import android.view.MenuItem
 import com.sinhro.memesapp_surf.R
-import com.sinhro.memesapp_surf.storage.*
 
 class MainActivity:AppCompatActivity(){
-    lateinit var storage: Storage
-    lateinit var test_tv: TextView
+
+    lateinit var bottomNavView: BottomNavigationView
+    lateinit var toolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        replaceFragment(MemesListFragment.newInstance())
 
-        test_tv = findViewById(R.id.test_tv)
+        toolbar = findViewById(R.id.main_toolbar)
+        bottomNavView = findViewById(R.id.main_bottomNavView)
 
-        storage = Storage(applicationContext)
 
-        showUserFromSharedPrefs()
+
+        bottomNavView.setOnNavigationItemSelectedListener(
+            createOnNavItemSelectedListener()
+        )
     }
 
-    private fun showUserFromSharedPrefs() {
-        val tok = storage.get(PREF_NAME_TOKEN)
-        val id = storage.get(PREF_NAME_ID)
-        val username = storage.get(PREF_NAME_USERNAME)
-        val filename = storage.get(PREF_NAME_FIRSTNAME)
-        val lastName = storage.get(PREF_NAME_LASTNAME)
-        val userDescription = storage.get(PREF_NAME_USERDESCRIPTION)
-        test_tv.text = "{user info from shared prefs} : \n $tok \n $id \n $username \n $filename \n $lastName \n $userDescription  "
+    private fun createOnNavItemSelectedListener(): BottomNavigationView.OnNavigationItemSelectedListener {
+        return object : BottomNavigationView.OnNavigationItemSelectedListener{
+            override fun onNavigationItemSelected(p0: MenuItem): Boolean {
+                when (p0.itemId) {
+                    R.id.menu_list -> replaceFragment(MemesListFragment.newInstance())
+                    R.id.menu_add -> replaceFragment(AddMemeFragment.newInstance())
+                    R.id.menu_profile -> replaceFragment(ProfileFragment.newInstance())
+                    else -> return false
+                }
+                return true
+            }
+
+        }
     }
+
+    private fun replaceFragment(fr : Fragment){
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.main_frameLayout,fr)
+            .commit()
+    }
+
+
 
 }

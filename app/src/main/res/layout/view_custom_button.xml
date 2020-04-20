@@ -7,7 +7,7 @@
         android:gravity="center"
 >
     <Button
-            android:id="@+id/log_in_btn_custom_button_view"
+            android:id="@+id/btn_custom_button_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/ripple_button_log_in"

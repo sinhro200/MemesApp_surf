@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_list"
+            android:title="@string/menu_memes"
+            android:icon="@drawable/ic_nav_list" />
+    <item android:id="@+id/menu_add"
+            android:title="@string/menu_addMeme"
+            android:icon="@drawable/ic_nav_add" />
+    <item android:id="@+id/menu_profile"
+            android:title="@string/menu_profile"
+            android:icon="@drawable/ic_nav_profile" />
+</menu>

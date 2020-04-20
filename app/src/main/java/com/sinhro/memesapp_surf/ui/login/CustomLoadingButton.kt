@@ -20,7 +20,7 @@ class CustomLoadingButton @JvmOverloads constructor(
     defStyleRes : Int = 0
 ) :
     RelativeLayout(context, attributeSet,defStyle,defStyleRes) {
-    lateinit var login_button: Button
+    lateinit var button: Button
     lateinit var loading_iv: ImageView
     lateinit var buttonText:String
     var loadingAnimation : Animation
@@ -61,24 +61,31 @@ class CustomLoadingButton @JvmOverloads constructor(
     }
 
     override fun setOnClickListener(l: OnClickListener?) {
-        setOnClickButton(l?:return)
+        button.setOnClickListener(l)
+    }
+
+    override fun hasOnClickListeners(): Boolean {
+        return button.hasOnClickListeners()
+    }
+
+    override fun setOnLongClickListener(l: OnLongClickListener?) {
+        button.setOnLongClickListener(l)
+    }
+
+    override fun performClick(): Boolean {
+        return  if (button.isActivated) button.performClick()  else false
     }
 
     private fun findViews(){
-        login_button = findViewById(R.id.log_in_btn_custom_button_view)
+        button = findViewById(R.id.btn_custom_button_view)
         loading_iv = findViewById(R.id.loader_iv_custom_button_view)
     }
 
-
-    fun setOnClickButton(onClickListener: OnClickListener) {
-        login_button.setOnClickListener(onClickListener)
-    }
-
     fun setStateLoading() {
-        login_button.isActivated = false
-        login_button.isEnabled = false
-        login_button.visibility = View.VISIBLE
-        login_button.text = ""
+        button.isActivated = false
+        button.isEnabled = false
+        button.visibility = View.VISIBLE
+        button.text = ""
 
         loading_iv.visibility = View.VISIBLE
         loading_iv.startAnimation(loadingAnimation)
@@ -86,10 +93,10 @@ class CustomLoadingButton @JvmOverloads constructor(
     }
 
     fun setStateDefault() {
-        login_button.isEnabled = true
-        login_button.isActivated = true
-        login_button.visibility = View.VISIBLE
-        login_button.text = buttonText
+        button.isEnabled = true
+        button.isActivated = true
+        button.visibility = View.VISIBLE
+        button.text = buttonText
 
         loading_iv.visibility = View.INVISIBLE
         loading_iv.clearAnimation()
