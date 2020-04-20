@@ -61,7 +61,7 @@ class CustomLoadingButton @JvmOverloads constructor(
     }
 
     override fun setOnClickListener(l: OnClickListener?) {
-        button.setOnClickListener(l?:null)
+        button.setOnClickListener(l)
     }
 
     override fun hasOnClickListeners(): Boolean {
