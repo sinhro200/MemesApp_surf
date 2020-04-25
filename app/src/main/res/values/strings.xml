@@ -18,6 +18,9 @@
     <string name="meme_cell_main_image">meme cell pic</string>
     <string name="search_pic">search_pic</string>
     <string name="title_memes_list">Popular memes</string>
+    <string name="refresh">refresh</string>
+    <string name="UnableToLoad">!!! Cant load memes</string>
+    <string name="missingInternetConnection">No internet connection. Try again later</string>
 
 
 </resources>

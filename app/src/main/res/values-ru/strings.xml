@@ -18,4 +18,7 @@
     <string name="meme_cell_main_image">Картинка мема</string>
     <string name="search_pic">search_pic</string>
     <string name="title_memes_list">Популярные мемы</string>
+    <string name="UnableToLoad">Не удалось загрузить ленту. Обновите экран или попробуйте позже.</string>
+    <string name="refresh">Обновить</string>
+    <string name="missingInternetConnection">Отсутствует интернет соединение. Попробуйте позже</string>
 </resources>
