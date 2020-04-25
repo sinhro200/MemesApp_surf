@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import com.sinhro.memesapp_surf.R
 
 class AddMemeFragment : Fragment() {
-    companion object{
-        fun newInstance():AddMemeFragment{
-            return AddMemeFragment()
+    companion object {
+        var instance:AddMemeFragment? = null
+        fun newInstance(): AddMemeFragment {
+            if (instance==null)
+                instance = AddMemeFragment()
+            return instance!!
         }
     }
     override fun onCreateView(

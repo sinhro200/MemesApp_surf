@@ -16,4 +16,6 @@
     <string name="share_meme">Поделиться</string>
     <string name="like_meme">Нравится</string>
     <string name="meme_cell_main_image">Картинка мема</string>
+    <string name="search_pic">search_pic</string>
+    <string name="title_memes_list">Популярные мемы</string>
 </resources>

@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import com.sinhro.memesapp_surf.R
 
 class ProfileFragment : Fragment() {
-    companion object{
-        fun newInstance():ProfileFragment{
-            return ProfileFragment()
+    companion object {
+        var instance:ProfileFragment? = null
+        fun newInstance(): ProfileFragment {
+            if (instance==null)
+                instance = ProfileFragment()
+            return instance!!
         }
     }
     override fun onCreateView(
