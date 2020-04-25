@@ -29,10 +29,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:textColor="@color/editTextColor"
                     android:inputType="phone"
                     app:prefix="@string/login_phone_prefix"
-                    app:prefixTextColor="@color/editTextColor"
+                    android:textColor="?android:attr/textColor"
+                    app:prefixTextColor="?android:attr/textColor"
                 />
 
             </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
@@ -49,7 +49,7 @@
                         android:id="@+id/password_extended_edit_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/editTextColor"
+                        android:textColor="?android:attr/textColor"
                         android:singleLine="true"
                         android:inputType="numberPassword"
                 />
