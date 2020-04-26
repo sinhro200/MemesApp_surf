@@ -5,9 +5,6 @@ import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.RecyclerView
 import android.view.*
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import android.view.animation.LinearInterpolator
 import android.widget.ImageView
 import android.widget.TextView
 import com.sinhro.memesapp_surf.R
@@ -61,6 +58,7 @@ class MemesListFragment : Fragment() {
             {
                 adapter.setMemes(it)
                 setLoadingState(false)
+                setErrorState(false)
             },
             {
                 setLoadingState(false)
@@ -75,10 +73,15 @@ class MemesListFragment : Fragment() {
     }
 
     private fun setErrorState(isError: Boolean) {
-        errorTv.visibility = if (isError) View.VISIBLE else View.INVISIBLE
-        SnackbarHelper.showErrorMessage(
-            memesListRecycleView,
-            getString(R.string.missingInternetConnection)
-        )
+        if (isError){
+            errorTv.visibility =  View.VISIBLE
+            SnackbarHelper.showErrorMessage(
+                memesListRecycleView,
+                getString(R.string.missingInternetConnection)
+            )
+        }else{
+            errorTv.visibility =  View.INVISIBLE
+        }
+
     }
 }
