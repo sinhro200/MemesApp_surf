@@ -1,8 +1,8 @@
-package com.sinhro.memesapp_surf.model.memes
+package com.sinhro.memesapp_surf.domain
 
 import com.google.gson.annotations.SerializedName
 
-data class Meme(
+data class MemeInfo(
     @SerializedName("id") val id : Long,
     @SerializedName("title") val title:String,
     @SerializedName("description") val description: String,

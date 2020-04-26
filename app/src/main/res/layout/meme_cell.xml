@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="9dp"
+            android:maxLines="1"
             />
 
     <LinearLayout
@@ -36,9 +37,7 @@
                 android:layout_height="24dp"
 
                 android:layout_marginEnd="10dp"
-                android:backgroundTintMode="src_atop"
-                android:backgroundTint="@drawable/favorite_icon_colors"
-                android:src="@drawable/ic_favorite"
+                android:background="@drawable/favorite_icon_selector"
                 />
 
         <ImageView
