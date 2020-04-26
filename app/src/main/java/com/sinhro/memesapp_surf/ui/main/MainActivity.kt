@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.widget.FrameLayout
 import com.sinhro.memesapp_surf.R
@@ -13,6 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var bottomNavView: BottomNavigationView
     private lateinit var frameLayout: FrameLayout
+    private lateinit var toolbar: Toolbar
 
     private var fragments: MutableList<Fragment> = mutableListOf()
     private var prevFrag: Fragment? = null
@@ -20,6 +22,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        toolbar = findViewById(R.id.main_toolbar)
+        setSupportActionBar(toolbar)
+
         bottomNavView = findViewById(R.id.main_bottomNavView)
         frameLayout = findViewById(R.id.main_frameLayout)
 

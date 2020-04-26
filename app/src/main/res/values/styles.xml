@@ -19,13 +19,13 @@
         <item name="primaryColor">@color/colorAccent</item>
         <item name="secondaryColor">#61FFFFFF</item>
         <item name="errorColor">@color/colorError</item>
-        <item name="helperTextColor">#FFFFFF</item>
+        <item name="helperTextColor">@color/colorWhite</item>
     </style>
 
     <style name="Toolbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">56dp</item>
-        <item name="theme">@style/MyAppTheme</item>
+        <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="android:background">@color/colorPrimary</item>
     </style>
 
