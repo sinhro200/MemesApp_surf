@@ -42,7 +42,7 @@
                     style="@style/TextFieldBoxesStyle"
                     android:background="@color/colorPrimary"
                     app:labelText="@string/Password"
-                    app:endIcon="@drawable/eye_closed"
+                    app:endIcon="@drawable/ic_eye_off"
 
             >
                 <studio.carbonylgroup.textfieldboxes.ExtendedEditText
@@ -67,7 +67,7 @@
 
 
                 app:text_button="@string/log_in_button"
-                app:src_image_state_loading="@drawable/loading"
+                app:src_image_state_loading="@drawable/ic_loader"
                 />
 
 </RelativeLayout>

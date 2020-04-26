@@ -50,7 +50,7 @@ class CustomLoadingButton @JvmOverloads constructor(
         val img_src = resources.getDrawable(
             typedArray.getResourceId(
                 R.styleable.CustomLoadingButton_src_image_state_loading,
-                R.drawable.loading
+                R.drawable.ic_loader
             ),
             resources.newTheme()
         )

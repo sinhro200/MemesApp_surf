@@ -104,10 +104,10 @@ class LoginActivity : AppCompatActivity() {
             val selectionPosition = password_extended_edit_text.selectionEnd
             if (canShowPass) {
                 setInputTypeVisible(true)
-                password_text_field_boxes.setEndIcon(R.drawable.eye)
+                password_text_field_boxes.setEndIcon(R.drawable.ic_eye_on)
             } else {
                 setInputTypeVisible(false)
-                password_text_field_boxes.setEndIcon(R.drawable.eye_closed)
+                password_text_field_boxes.setEndIcon(R.drawable.ic_eye_off)
             }
             password_extended_edit_text.setSelection(selectionPosition)
         }
