@@ -20,12 +20,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        showFragment(MemesListFragment.newInstance())
-
         bottomNavView = findViewById(R.id.main_bottomNavView)
-
         frameLayout = findViewById(R.id.main_frameLayout)
 
+        showFragment(MemesListFragment.newInstance())
         bottomNavView.setOnNavigationItemSelectedListener(
             createOnNavItemSelectedListener()
         )

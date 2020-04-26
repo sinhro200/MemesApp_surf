@@ -41,6 +41,7 @@ class MemesListFragment : Fragment() {
         memesListRecycleView.adapter = adapter
         swipeRefreshLayout.setOnRefreshListener { refreshMemes() }
         refreshMemes()
+
         return body
     }
 
