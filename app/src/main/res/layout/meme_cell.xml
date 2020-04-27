@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+        android:id="@+id/mcell_body_ll"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,11 +28,12 @@
             android:layout_height="wrap_content" 
             android:orientation="horizontal"
             android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:layout_marginBottom="8dp"
             >
 
         <ImageView
-                android:contentDescription="@string/like_meme"
+                android:contentDescription="@string/fav_meme"
                 android:id="@+id/mcell_favorite_iv"
                 android:layout_width="24dp"
                 android:layout_height="24dp"

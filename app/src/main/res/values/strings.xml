@@ -14,13 +14,21 @@
     <string name="menu_addMeme">add meme</string>
     <string name="menu_profile">profile</string>
     <string name="share_meme">share meme</string>
-    <string name="like_meme">like meme</string>
+    <string name="fav_meme">like meme</string>
     <string name="meme_cell_main_image">meme cell pic</string>
     <string name="search">search_pic</string>
     <string name="title_memes_list">Popular memes</string>
     <string name="refresh">refresh</string>
-    <string name="UnableToLoad">!!! Cant load memes</string>
+    <string name="UnableToLoad">!!! Can not load memes</string>
     <string name="missingInternetConnection">No internet connection. Try again later</string>
+    <string name="years">years</string>
+    <string name="months">month</string>
+    <string name="days">days</string>
+    <string name="hours">hours</string>
+    <string name="minutes">minutes</string>
+    <string name="seconds">seconds</string>
+    <string name="ago">ago</string>
+    <string name="meme_picture">meme picture</string>
 
 
 </resources>

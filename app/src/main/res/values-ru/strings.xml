@@ -14,11 +14,19 @@
     <string name="menu_addMeme">Добавить мем</string>
     <string name="menu_profile">Профиль</string>
     <string name="share_meme">Поделиться</string>
-    <string name="like_meme">Нравится</string>
+    <string name="fav_meme">Нравится</string>
     <string name="meme_cell_main_image">Картинка мема</string>
     <string name="search">search_pic</string>
     <string name="title_memes_list">Популярные мемы</string>
     <string name="UnableToLoad">Не удалось загрузить ленту. Обновите экран или попробуйте позже.</string>
     <string name="refresh">Обновить</string>
     <string name="missingInternetConnection">Отсутствует интернет соединение. Попробуйте позже</string>
+    <string name="years">лет</string>
+    <string name="months">месяцев</string>
+    <string name="days">дней</string>
+    <string name="hours">часов</string>
+    <string name="minutes">минут</string>
+    <string name="seconds">секунд</string>
+    <string name="ago">назад</string>
+    <string name="meme_picture">meme picture</string>
 </resources>

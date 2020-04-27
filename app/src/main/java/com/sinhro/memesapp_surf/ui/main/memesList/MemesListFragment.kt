@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.RecyclerView
 import android.view.*
+import android.widget.ImageView
 import android.widget.TextView
 import com.sinhro.memesapp_surf.R
 import com.sinhro.memesapp_surf.customDebugger.CustomDebug
@@ -61,6 +62,12 @@ class MemesListFragment : Fragment() {
         }
         return true
     }
+
+    override fun onResume() {
+        adapter.checkMemeAfterResumed()
+        super.onResume()
+    }
+
 
     private fun findViews(body: View) {
         memesListRecycleView = body.findViewById(R.id.memes_list_recView)
