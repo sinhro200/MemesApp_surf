@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -44,9 +45,9 @@ dependencies {
 
 
     implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
     implementation "com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0"
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
 
     implementation "ru.tinkoff.decoro:decoro:1.1.1"
 
@@ -55,4 +56,14 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:4.4.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
+
+    // Room
+    implementation "androidx.room:room-runtime:2.2.5"
+    implementation "androidx.room:room-rxjava2:2.2.5"
+    kapt "androidx.room:room-compiler:2.2.5"
+
+    // RxJava2
+    implementation "io.reactivex.rxjava2:rxkotlin:2.3.0"
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.0"
+
 }

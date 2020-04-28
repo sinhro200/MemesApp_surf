@@ -1,7 +1,6 @@
 package com.sinhro.memesapp_surf.model.memes
 
 import android.os.Handler
-import com.sinhro.memesapp_surf.domain.MemeInfo
 import com.sinhro.memesapp_surf.model.BASE_URL
 import com.sinhro.memesapp_surf.model.MEMES_TIMEOUT_MILLIS
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
