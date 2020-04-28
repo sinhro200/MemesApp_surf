@@ -1,5 +1,7 @@
 package com.sinhro.memesapp_surf.ui.main
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -117,5 +119,10 @@ class MemeInfoActivity : AppCompatActivity() {
             ShareUtil.share(meme)
         }
         return true
+    }
+
+    override fun onBackPressed() {
+        setResult(Activity.RESULT_OK)
+        super.onBackPressed()
     }
 }

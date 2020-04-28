@@ -1,5 +1,6 @@
 package com.sinhro.memesapp_surf.ui.main.memesList
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -51,6 +52,14 @@ class MemesListFragment : Fragment() {
         return body
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK)
+            adapter.checkMemeAfterResumed()
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+
+
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         inflater?.inflate(R.menu.memes_list_toolbar,menu)
         super.onCreateOptionsMenu(menu,inflater)
@@ -64,7 +73,6 @@ class MemesListFragment : Fragment() {
     }
 
     override fun onResume() {
-        adapter.checkMemeAfterResumed()
         super.onResume()
     }
 

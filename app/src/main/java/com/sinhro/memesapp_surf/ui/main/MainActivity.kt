@@ -1,5 +1,6 @@
 package com.sinhro.memesapp_surf.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
@@ -47,6 +48,12 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        for (fragment in this.supportFragmentManager.fragments)
+            fragment.onActivityResult(requestCode,resultCode,data)
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     private fun showFragment(fr: Fragment) {

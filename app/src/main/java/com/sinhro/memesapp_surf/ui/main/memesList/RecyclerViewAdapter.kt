@@ -2,10 +2,7 @@ package com.sinhro.memesapp_surf.ui.main.memesList
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
-import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +13,7 @@ import com.sinhro.memesapp_surf.R
 import com.sinhro.memesapp_surf.domain.MemeInfo
 import com.sinhro.memesapp_surf.storage.StorageMemeHelper
 import com.sinhro.memesapp_surf.ui.ShareUtil
+import com.sinhro.memesapp_surf.ui.main.MainActivity
 import com.sinhro.memesapp_surf.ui.main.MemeInfoActivity
 
 class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ItemViewHolder>() {
@@ -80,7 +78,10 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ItemViewHol
         recMeme = meme
         val intent = Intent(ctx, MemeInfoActivity::class.java)
         intent.putExtra("meme", Gson().toJson(meme))
-        ctx.startActivity(intent)
+//        ctx.startActivity(intent)
+
+        ctx as MainActivity
+        ctx.startActivityForResult(intent,1)
     }
 
     fun checkMemeAfterResumed(){
