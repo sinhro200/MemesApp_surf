@@ -2,7 +2,7 @@ package com.sinhro.memesapp_surf.storage
 
 import android.content.Context
 import com.google.gson.Gson
-import com.sinhro.memesapp_surf.domain.MemeInfo
+import com.sinhro.memesapp_surf.model.memes.MemeInfo
 
 class StorageMemeHelper(ctx : Context) {
     private var storage = Storage(ctx)
@@ -18,7 +18,8 @@ class StorageMemeHelper(ctx : Context) {
     fun getMeme(memeId : String) : MemeInfo?{
         val memeJson = storage.get(memeId)
         return if (!memeJson.isBlank())
-            Gson().fromJson(memeJson,MemeInfo::class.java)
+            Gson().fromJson(memeJson,
+                MemeInfo::class.java)
             else null
     }
 

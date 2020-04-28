@@ -17,7 +17,6 @@
         <android.support.v7.widget.Toolbar
                 android:id="@+id/meme_info_toolbar"
                 style="@style/Toolbar"
-
                 />
 
         <TextView

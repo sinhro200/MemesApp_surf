@@ -29,6 +29,9 @@
     <string name="seconds">seconds</string>
     <string name="ago">ago</string>
     <string name="meme_picture">meme picture</string>
+    <string name="attach">attach</string>
+    <string name="title">Title</string>
+    <string name="text">Text</string>
 
 
 </resources>

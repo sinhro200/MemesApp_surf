@@ -29,4 +29,7 @@
     <string name="seconds">секунд</string>
     <string name="ago">назад</string>
     <string name="meme_picture">meme picture</string>
+    <string name="attach">attach</string>
+    <string name="title">Заголовок</string>
+    <string name="text">Текст</string>
 </resources>

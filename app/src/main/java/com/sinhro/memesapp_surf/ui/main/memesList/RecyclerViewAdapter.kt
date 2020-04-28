@@ -10,7 +10,7 @@ import android.widget.*
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.sinhro.memesapp_surf.R
-import com.sinhro.memesapp_surf.domain.MemeInfo
+import com.sinhro.memesapp_surf.model.memes.MemeInfo
 import com.sinhro.memesapp_surf.storage.StorageMemeHelper
 import com.sinhro.memesapp_surf.ui.ShareUtil
 import com.sinhro.memesapp_surf.ui.main.MainActivity
@@ -78,8 +78,6 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ItemViewHol
         recMeme = meme
         val intent = Intent(ctx, MemeInfoActivity::class.java)
         intent.putExtra("meme", Gson().toJson(meme))
-//        ctx.startActivity(intent)
-
         ctx as MainActivity
         ctx.startActivityForResult(intent,1)
     }

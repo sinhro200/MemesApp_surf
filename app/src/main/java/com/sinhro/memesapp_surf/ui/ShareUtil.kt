@@ -1,6 +1,6 @@
 package com.sinhro.memesapp_surf.ui
 
-import com.sinhro.memesapp_surf.domain.MemeInfo
+import com.sinhro.memesapp_surf.model.memes.MemeInfo
 
 class ShareUtil{
 

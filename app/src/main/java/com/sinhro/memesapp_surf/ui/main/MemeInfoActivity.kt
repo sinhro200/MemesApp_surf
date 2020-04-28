@@ -1,7 +1,6 @@
 package com.sinhro.memesapp_surf.ui.main
 
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -11,7 +10,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.sinhro.memesapp_surf.R
-import com.sinhro.memesapp_surf.domain.MemeInfo
+import com.sinhro.memesapp_surf.model.memes.MemeInfo
 import com.sinhro.memesapp_surf.storage.StorageMemeHelper
 import com.sinhro.memesapp_surf.ui.DateUtils
 import com.sinhro.memesapp_surf.ui.DateUtils.*
@@ -105,6 +104,10 @@ class MemeInfoActivity : AppCompatActivity() {
     }
 
     private fun parseDate2(date: Long): String {
+        /**
+         * TODO
+         * Попробовать через OffsetDateTime
+         */
         val ta = TimeAgo(applicationContext)
         return ta.toDuration(date)
     }
