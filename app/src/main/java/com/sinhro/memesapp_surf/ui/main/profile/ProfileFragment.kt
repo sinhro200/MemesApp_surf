@@ -1,16 +1,17 @@
-package com.sinhro.memesapp_surf.ui.main
+package com.sinhro.memesapp_surf.ui.main.profile
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.*
 import com.sinhro.memesapp_surf.R
+import com.sinhro.memesapp_surf.ui.main.MainActivity
 
 class ProfileFragment : androidx.fragment.app.Fragment() {
     companion object {
-        var instance:ProfileFragment? = null
+        var instance: ProfileFragment? = null
         fun newInstance(): ProfileFragment {
-            if (instance==null)
-                instance = ProfileFragment()
+            if (instance ==null)
+                instance =
+                    ProfileFragment()
             return instance!!
         }
     }

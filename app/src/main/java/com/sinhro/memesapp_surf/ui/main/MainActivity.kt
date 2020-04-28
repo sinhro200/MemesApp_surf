@@ -9,7 +9,9 @@ import android.view.MenuItem
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import com.sinhro.memesapp_surf.R
+import com.sinhro.memesapp_surf.ui.main.addMeme.AddMemeFragment
 import com.sinhro.memesapp_surf.ui.main.memesList.MemesListFragment
+import com.sinhro.memesapp_surf.ui.main.profile.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -69,6 +71,11 @@ class MainActivity : AppCompatActivity() {
         transaction.commit()
         prevFrag = fr
         fragments.add(fr)
+    }
+
+    private fun openAddMemeActivity(){
+        //val intent = Intent(this, AddMemeA ::class.java)
+        //startActivity(intent)
     }
 
 

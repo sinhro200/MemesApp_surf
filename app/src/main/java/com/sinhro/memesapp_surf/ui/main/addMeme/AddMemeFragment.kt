@@ -1,16 +1,18 @@
-package com.sinhro.memesapp_surf.ui.main
+package com.sinhro.memesapp_surf.ui.main.addMeme
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.*
 import com.sinhro.memesapp_surf.R
+import com.sinhro.memesapp_surf.ui.main.MainActivity
 
 class AddMemeFragment : Fragment() {
     companion object {
-        var instance:AddMemeFragment? = null
+        var instance: AddMemeFragment? = null
         fun newInstance(): AddMemeFragment {
-            if (instance==null)
-                instance = AddMemeFragment()
+            if (instance ==null)
+                instance =
+                    AddMemeFragment()
             return instance!!
         }
     }

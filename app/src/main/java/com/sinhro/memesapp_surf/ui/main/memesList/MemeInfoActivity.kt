@@ -1,4 +1,4 @@
-package com.sinhro.memesapp_surf.ui.main
+package com.sinhro.memesapp_surf.ui.main.memesList
 
 import android.app.Activity
 import android.os.Bundle

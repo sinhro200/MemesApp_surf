@@ -14,7 +14,6 @@ import com.sinhro.memesapp_surf.model.memes.MemeInfo
 import com.sinhro.memesapp_surf.storage.StorageMemeHelper
 import com.sinhro.memesapp_surf.ui.ShareUtil
 import com.sinhro.memesapp_surf.ui.main.MainActivity
-import com.sinhro.memesapp_surf.ui.main.MemeInfoActivity
 
 class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ItemViewHolder>() {
 
