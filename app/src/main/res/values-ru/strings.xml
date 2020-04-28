@@ -32,4 +32,6 @@
     <string name="attach">attach</string>
     <string name="title">Заголовок</string>
     <string name="text">Текст</string>
+    <string name="CREATE">Создать</string>
+    <string name="memeImage">meme image</string>
 </resources>

@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import com.sinhro.memesapp_surf.R
+import com.sinhro.memesapp_surf.ui.main.addMeme.AddMemeActivity
 import com.sinhro.memesapp_surf.ui.main.addMeme.AddMemeFragment
 import com.sinhro.memesapp_surf.ui.main.memesList.MemesListFragment
 import com.sinhro.memesapp_surf.ui.main.profile.ProfileFragment
@@ -40,13 +41,13 @@ class MainActivity : AppCompatActivity() {
     private fun createOnNavItemSelectedListener(): BottomNavigationView.OnNavigationItemSelectedListener {
         return object : BottomNavigationView.OnNavigationItemSelectedListener {
             override fun onNavigationItemSelected(botNavViewItem: MenuItem): Boolean {
-                val curFragment = when (botNavViewItem.itemId) {
-                    R.id.menu_list -> MemesListFragment.newInstance()
-                    R.id.menu_add -> AddMemeFragment.newInstance()
-                    R.id.menu_profile -> ProfileFragment.newInstance()
+                val curFragment: Fragment
+                when (botNavViewItem.itemId) {
+                    R.id.menu_list -> showFragment(MemesListFragment.newInstance())
+                    R.id.menu_add -> openAddMemeActivity()//AddMemeFragment.newInstance()
+                    R.id.menu_profile -> showFragment(ProfileFragment.newInstance())
                     else -> return false
                 }
-                showFragment(curFragment)
                 return true
             }
         }
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         for (fragment in this.supportFragmentManager.fragments)
-            fragment.onActivityResult(requestCode,resultCode,data)
+            fragment.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
     }
 
@@ -73,9 +74,9 @@ class MainActivity : AppCompatActivity() {
         fragments.add(fr)
     }
 
-    private fun openAddMemeActivity(){
-        //val intent = Intent(this, AddMemeA ::class.java)
-        //startActivity(intent)
+    private fun openAddMemeActivity() {
+        val intent = Intent(this, AddMemeActivity::class.java)
+        startActivity(intent)
     }
 
 

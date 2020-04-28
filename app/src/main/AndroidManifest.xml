@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.main.memesList.MemeInfoActivity" />
+        <activity android:name=".ui.main.addMeme.AddMemeActivity" />
     </application>
 
 </manifest>

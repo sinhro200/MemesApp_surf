@@ -32,6 +32,8 @@
     <string name="attach">attach</string>
     <string name="title">Title</string>
     <string name="text">Text</string>
+    <string name="CREATE">Create</string>
+    <string name="memeImage">meme image</string>
 
 
 </resources>
