@@ -3,12 +3,10 @@ package com.sinhro.memesapp_surf.ui.main.memesList
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.RecyclerView
 import android.view.*
-import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.sinhro.memesapp_surf.R
 import com.sinhro.memesapp_surf.customDebugger.CustomDebug
 import com.sinhro.memesapp_surf.model.memes.MemesService
@@ -16,7 +14,7 @@ import com.sinhro.memesapp_surf.ui.SnackbarHelper
 import com.sinhro.memesapp_surf.ui.main.MainActivity
 
 
-class MemesListFragment : Fragment() {
+class MemesListFragment : androidx.fragment.app.Fragment() {
     companion object {
         private var instance: MemesListFragment? = null
         fun newInstance(): MemesListFragment {
@@ -60,13 +58,13 @@ class MemesListFragment : Fragment() {
 
 
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater?.inflate(R.menu.memes_list_toolbar,menu)
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.memes_list_toolbar,menu)
         super.onCreateOptionsMenu(menu,inflater)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.itemId == R.id.action_search) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_search) {
 
         }
         return true

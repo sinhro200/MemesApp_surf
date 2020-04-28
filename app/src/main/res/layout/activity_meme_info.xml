@@ -14,7 +14,7 @@
             android:gravity="center_horizontal"
             >
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
                 android:id="@+id/meme_info_toolbar"
                 style="@style/Toolbar"
                 />
@@ -35,7 +35,7 @@
 
 
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
@@ -62,7 +62,7 @@
                     android:contentDescription="@string/fav_meme"
                     android:background="@drawable/favorite_icon_selector"
                     />
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <TextView
                 android:id="@+id/meme_info_description_tv"
                 android:layout_width="match_parent"

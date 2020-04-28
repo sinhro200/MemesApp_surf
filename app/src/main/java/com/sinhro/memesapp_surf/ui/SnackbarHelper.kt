@@ -1,7 +1,7 @@
 package com.sinhro.memesapp_surf.ui
 
 import android.content.Context
-import android.support.design.widget.Snackbar
+import com.google.android.material.snackbar.Snackbar
 import android.view.View
 import android.widget.TextView
 import com.sinhro.memesapp_surf.R
