@@ -76,16 +76,12 @@ class AddMemeActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == pickImageId && resultCode == RESULT_OK) {
-            try {
-                val imageUri = data?.data
-                if (imageUri != null) {
-                    photoUrl = imageUri.toString()
-                    Glide.with(applicationContext)
-                        .load(photoUrl)
-                        .into(addMemeImageIv)
-                }
-            } catch (e: FileNotFoundException) {
-                e.printStackTrace()
+            val imageUri = data?.data
+            if (imageUri != null) {
+                photoUrl = imageUri.toString()
+                Glide.with(applicationContext)
+                    .load(photoUrl)
+                    .into(addMemeImageIv)
             }
         }
 
