@@ -9,7 +9,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ContextThemeWrapper
@@ -182,9 +181,7 @@ class AddMemeActivity : AppCompatActivity() {
                 }
             }
         )
-        val ad = builder.create()
-        ad.setCancelable(true)
-        return ad
+        return builder.create()
     }
 
     private fun onChooseImageClick() {

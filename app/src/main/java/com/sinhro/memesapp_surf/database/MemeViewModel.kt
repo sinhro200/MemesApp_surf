@@ -2,6 +2,7 @@ package com.sinhro.memesapp_surf.database
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import com.sinhro.memesapp_surf.customDebugger.CustomDebug
 import com.sinhro.memesapp_surf.model.memes.MemeInfo
 import io.reactivex.Flowable
 import io.reactivex.Observable
@@ -21,10 +22,15 @@ class MemeViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun insert(meme : MemeInfo){
-        Observable.just {
-            dao.insert(meme)
-        }.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            dao.insert(meme).subscribeOn(Schedulers.io()).subscribe(
+                {
+                    CustomDebug.log("meme added to db successfully")
+                },
+                {
+                    CustomDebug.log("meme not added to db")
+                    it.printStackTrace()
+                }
+            )
     }
 
     fun get(id:Long): Single<MemeInfo> {
@@ -32,6 +38,8 @@ class MemeViewModel(application: Application): AndroidViewModel(application) {
     }
 
 
-    fun getObservableMemesList() = allMemes
+    fun getObservableMemesList() : Observable<List<MemeInfo>> {
+        return dao.getAllMemes()
+    }
     //fun onMemesListChanged( action : (List<MemeInfo>) -> Unit){}
 }
