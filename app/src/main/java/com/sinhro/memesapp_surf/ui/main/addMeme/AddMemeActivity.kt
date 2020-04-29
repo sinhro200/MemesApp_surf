@@ -2,6 +2,7 @@ package com.sinhro.memesapp_surf.ui.main.addMeme
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -19,6 +20,7 @@ import com.sinhro.memesapp_surf.R
 import com.sinhro.memesapp_surf.database.MemeViewModel
 import com.sinhro.memesapp_surf.model.memes.MemeInfo
 import java.io.File
+import kotlin.random.Random
 
 
 class AddMemeActivity : AppCompatActivity() {
@@ -34,7 +36,6 @@ class AddMemeActivity : AppCompatActivity() {
     private val pickImageId = 2
     private lateinit var chooserDialog: AlertDialog
     private lateinit var imageSaver: ImageSaver
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,7 +100,7 @@ class AddMemeActivity : AppCompatActivity() {
 
     private fun onMemeReady() {
         val meme = MemeInfo(
-            1,
+            Random.Default.nextLong(),
             addMemeTitleTied.text.toString(),
             addMemeDescriptionTied.text.toString(),
             false,
@@ -126,13 +127,25 @@ class AddMemeActivity : AppCompatActivity() {
     }
 
     private fun choosePhoto() {
-        val photoPickerIntent = Intent(Intent.ACTION_PICK);
+        val photoPickerIntent = Intent(Intent.ACTION_OPEN_DOCUMENT);
         photoPickerIntent.type = "image/*";
         startActivityForResult(photoPickerIntent, pickImageId);
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == pickImageId && resultCode == RESULT_OK) {
+            val imageUri = data?.data
+            imageUri?.let {
+                imageUrl = it.toString()
+                chooserDialog.hide()
+                Glide.with(applicationContext)
+                    .load(imageUrl)
+                    .into(addMemeImageIv)
+                toCheckReadyButton()
+            }
+        }
+
         imageSaver.onPicResult(requestCode, resultCode, data
         ) {
             imageUrl = it

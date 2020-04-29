@@ -78,6 +78,9 @@ class ProfileFragment : androidx.fragment.app.Fragment() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 adapter.setMemes(it)
+                it.forEach {
+                    CustomDebug.log(it.toString())
+                }
             }
 
 
