@@ -1,23 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/colorPrimaryDark"
+        >
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/main_toolbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            style="@style/Toolbar.main">
 
->
-    <TextView
-            android:layout_centerHorizontal="true"
-            android:id="@+id/test_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minHeight="50dp"
-            android:minWidth="250dp"
-            android:background="@color/colorAccent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="100dp"
-            android:padding="10dp"
-    />
+    </androidx.appcompat.widget.Toolbar>
 
-</RelativeLayout>
+    <FrameLayout
+            android:id="@+id/main_frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/main_bottomNavView"
+            app:layout_constraintTop_toBottomOf="@id/main_toolbar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+
+            >
+
+    </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/main_bottomNavView"
+            android:background="@color/bottom_navView_backColor"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            app:menu="@menu/my_navigation_items"
+            app:labelVisibilityMode="unlabeled"
+            app:itemIconTint="@drawable/bottom_nav_item_colors"
+            app:itemIconSize="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        android:id="@+id/mcell_body_ll"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary"
+        android:layout_margin="4dp"
+        >
+
+    <ImageView
+            android:id="@+id/mcell_mainImage_iv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/meme_cell_main_image" />
+
+    <TextView
+            android:id="@+id/mcell_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="9dp"
+            android:maxLines="1"
+            />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_marginBottom="8dp"
+            >
+
+        <ImageView
+                android:contentDescription="@string/fav_meme"
+                android:id="@+id/mcell_favorite_iv"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/favorite_icon_selector"
+                />
+
+        <ImageView
+                android:contentDescription="@string/share_meme"
+                android:id="@+id/mcell_share_iv"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_share"
+                />
+    </LinearLayout>
+
+</LinearLayout>

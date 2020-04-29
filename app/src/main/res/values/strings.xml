@@ -10,6 +10,34 @@
     <string name="TryAgain">Try again</string>
     <string name="image_content_description">Image</string>
     <string name="ErrorDuringRequest">An error occurred during the request, maybe you entered the username / password incorrectly </string>
+    <string name="menu_memes">memes</string>
+    <string name="menu_addMeme">add meme</string>
+    <string name="menu_profile">profile</string>
+    <string name="share_meme">share meme</string>
+    <string name="fav_meme">like meme</string>
+    <string name="meme_cell_main_image">meme cell pic</string>
+    <string name="search">search_pic</string>
+    <string name="title_memes_list">Popular memes</string>
+    <string name="refresh">refresh</string>
+    <string name="UnableToLoad">!!! Can not load memes</string>
+    <string name="missingInternetConnection">No internet connection. Try again later</string>
+    <string name="years">years</string>
+    <string name="months">month</string>
+    <string name="days">days</string>
+    <string name="hours">hours</string>
+    <string name="minutes">minutes</string>
+    <string name="seconds">seconds</string>
+    <string name="ago">ago</string>
+    <string name="meme_picture">meme picture</string>
+    <string name="attach">attach</string>
+    <string name="title">Title</string>
+    <string name="text">Text</string>
+    <string name="CREATE">Create</string>
+    <string name="memeImage">meme image</string>
+    <string name="choosePhoto">Choose photo</string>
+    <string name="fromGallery">From gallery</string>
+    <string name="toMakeAPhoto">Take a photo</string>
+    <string name="profileimage">profileImage</string>
 
 
 </resources>

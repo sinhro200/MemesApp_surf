@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/colorPrimary"
+    >
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/meme_info_toolbar"
+                style="@style/Toolbar.main"
+                />
+
+        <TextView
+                android:id="@+id/meme_info_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:textSize="@dimen/textSize_great_24"
+                />
+
+        <ImageView
+                android:contentDescription="@string/meme_picture"
+                android:id="@+id/meme_info_pic_iv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:orientation="horizontal"
+                >
+
+            <TextView
+                    android:id="@+id/meme_info_date_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textSize_little_12"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+
+            <ImageView
+                    android:id="@+id/meme_info_fav_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:contentDescription="@string/fav_meme"
+                    android:background="@drawable/favorite_icon_selector"
+                    />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+                android:id="@+id/meme_info_description_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textSize_medium_14"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="10dp"
+                />
+
+
+    </LinearLayout>
+</ScrollView>

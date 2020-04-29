@@ -19,6 +19,7 @@
             <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
                 android:id="@+id/login_text_field_boxes"
                 style="@style/TextFieldBoxesStyle"
+                android:background="@color/colorPrimary"
                 app:labelText="@string/Login"
                 android:layout_marginBottom="16dp"
             >
@@ -28,10 +29,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:textColor="@color/editTextColor"
                     android:inputType="phone"
                     app:prefix="@string/login_phone_prefix"
-                    app:prefixTextColor="@color/editTextColor"
+                    android:textColor="?android:attr/textColor"
+                    app:prefixTextColor="?android:attr/textColor"
                 />
 
             </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
@@ -39,15 +40,16 @@
             <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
                     android:id="@+id/password_text_field_boxes"
                     style="@style/TextFieldBoxesStyle"
+                    android:background="@color/colorPrimary"
                     app:labelText="@string/Password"
-                    app:endIcon="@drawable/eye_closed"
+                    app:endIcon="@drawable/ic_eye_off"
 
             >
                 <studio.carbonylgroup.textfieldboxes.ExtendedEditText
                         android:id="@+id/password_extended_edit_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/editTextColor"
+                        android:textColor="?android:attr/textColor"
                         android:singleLine="true"
                         android:inputType="numberPassword"
                 />
@@ -65,7 +67,7 @@
 
 
                 app:text_button="@string/log_in_button"
-                app:src_image_state_loading="@drawable/loading"
+                app:src_image_state_loading="@drawable/ic_loader"
                 />
 
 </RelativeLayout>

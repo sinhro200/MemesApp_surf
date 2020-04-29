@@ -16,9 +16,14 @@ class Storage(context : Context) {
         CustomDebug.log("Shared prefs saved : [$name] = [$value]")
     }
 
-    fun get(name : String) = sharedPreferences.getString(name,"")
+    fun get(name : String):String = sharedPreferences.getString(name,"")?:""
 
-
+    fun remove(name : String){
+        sharedPreferences.edit()
+            .remove(name)
+            .apply()
+        CustomDebug.log("Shared prefs removed : [$name]")
+    }
 
     fun saveInt(name : String, value : Int){
         sharedPreferences.edit()

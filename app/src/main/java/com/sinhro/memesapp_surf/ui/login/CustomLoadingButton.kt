@@ -23,7 +23,7 @@ class CustomLoadingButton @JvmOverloads constructor(
     lateinit var button: Button
     lateinit var loading_iv: ImageView
     lateinit var buttonText:String
-    var loadingAnimation : Animation
+    var rotateAnimation : Animation
 
     init {
         LayoutInflater.from(context).inflate(
@@ -34,8 +34,8 @@ class CustomLoadingButton @JvmOverloads constructor(
             initComponents(context.obtainStyledAttributes(it,
                 R.styleable.CustomLoadingButton, 0, 0))
         }
-        loadingAnimation = AnimationUtils.loadAnimation(context, R.anim.rotate_center)
-        loadingAnimation.interpolator = LinearInterpolator()
+        rotateAnimation = AnimationUtils.loadAnimation(context, R.anim.rotate_center)
+        rotateAnimation.interpolator = LinearInterpolator()
 
         setStateDefault()
     }
@@ -50,7 +50,7 @@ class CustomLoadingButton @JvmOverloads constructor(
         val img_src = resources.getDrawable(
             typedArray.getResourceId(
                 R.styleable.CustomLoadingButton_src_image_state_loading,
-                R.drawable.loading
+                R.drawable.ic_loader
             ),
             resources.newTheme()
         )
@@ -61,7 +61,7 @@ class CustomLoadingButton @JvmOverloads constructor(
     }
 
     override fun setOnClickListener(l: OnClickListener?) {
-        button.setOnClickListener(l?:null)
+        button.setOnClickListener(l)
     }
 
     override fun hasOnClickListeners(): Boolean {
@@ -88,7 +88,7 @@ class CustomLoadingButton @JvmOverloads constructor(
         button.text = ""
 
         loading_iv.visibility = View.VISIBLE
-        loading_iv.startAnimation(loadingAnimation)
+        loading_iv.startAnimation(rotateAnimation)
 
     }
 
