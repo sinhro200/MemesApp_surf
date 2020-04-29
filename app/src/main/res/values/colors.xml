@@ -6,4 +6,5 @@
     <color name="colorError">#FF575D</color>
     <color name="bottom_navView_backColor">#12102B</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
 </resources>

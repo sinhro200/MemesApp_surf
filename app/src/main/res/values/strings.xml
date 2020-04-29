@@ -34,6 +34,10 @@
     <string name="text">Text</string>
     <string name="CREATE">Create</string>
     <string name="memeImage">meme image</string>
+    <string name="choosePhoto">Choose photo</string>
+    <string name="fromGallery">From gallery</string>
+    <string name="toMakeAPhoto">Take a photo</string>
+    <string name="profileimage">profileImage</string>
 
 
 </resources>

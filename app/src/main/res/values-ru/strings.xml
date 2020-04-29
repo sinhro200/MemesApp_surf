@@ -34,4 +34,8 @@
     <string name="text">Текст</string>
     <string name="CREATE">Создать</string>
     <string name="memeImage">meme image</string>
+    <string name="choosePhoto">Выбрать фото</string>
+    <string name="fromGallery">Из галереи</string>
+    <string name="toMakeAPhoto">Сделать фото</string>
+    <string name="profileimage">profileImage</string>
 </resources>

@@ -5,4 +5,5 @@
     <dimen name="textSize_big_16">16sp</dimen>
     <dimen name="textSize_large_20">20sp</dimen>
     <dimen name="textSize_great_24">24sp</dimen>
+    <dimen name="textSize_b_l_18">18sp</dimen>
 </resources>
